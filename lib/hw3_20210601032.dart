@@ -32,7 +32,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   bool isSelected = false;
-  String selectedValue = "No";
+  bool selectedValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -61,15 +61,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 });
               }
             ),
-            DropdownButton(
+            DropdownButton<bool>(
               value : selectedValue,
-              items: <String>["Yes", "No"].map((String value){
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              onChanged: (String? newValue){
+              items: const[
+                DropdownMenuItem<bool>(
+                  value : true,
+                  child: Text("Yes"),
+                ),
+                DropdownMenuItem<bool>(
+                  value : false,
+                  child: Text("No"),
+                ),
+              ],
+              onChanged: (bool? newValue){
                 setState(() {
                   selectedValue = newValue!;
                 });
